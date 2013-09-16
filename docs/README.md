@@ -19,7 +19,6 @@ Visuose dokumentuose galima naudoti tokias papildomas LaTeX komandas:
 * `\versionString{}` - dokumento versija (ji imama iš Git).
 * `\insertPicture[dydis]{failo-pavadinimas-be-plėtinio}{trumpas vaizdo apibūdinimas}` įterpia vaizdą su žyme. Žymės pavadinimas sutampa su perduodamu failo pavadinimu. Apibūdinimas naudojamas kaip antraštė. Vaizdai turi būti subdirektorijoje `images/`.
 * `\referToPicture{failo-pavadinimas-be-plėtinio}` - tekstinė nuoroda į vaizdą, įterptą su `\insertPicture`.
-* `\foreign{žodis}` žymi užsienietišką žodį/frazę.
 * `\trademark{pavadinimas}` žymi įmonės pavadinimą arba produkto/paslaugos pavadinimą.
 
 # Priklausomybės
