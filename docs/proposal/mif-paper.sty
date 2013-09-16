@@ -1,0 +1,50 @@
+%%
+%% mif-paper
+%% Spausdinimui skirtų MIF dokumentų (t.y., ne skaidrių) stilius.
+%%
+
+%% TODO: Jei dėstytojai reikalaus, pataisyti stilių, kad jis labiau atitiktų kursiniams/bakalauriniams darbams keliamus reikalavimus (nustatyt paraštes ir t.t.).
+
+\ProvidesPackage{mif-paper}
+
+%%------------------------------------------------------------------------------
+
+\RequirePackage{lt-document}
+
+%% Lapo dydis ir paraštės.
+\RequirePackage[a4paper, margin = 2cm]{geometry}
+
+%% Šriftas (bent jau panašus).
+\RequirePackage{fontspec}
+\setmainfont[Ligatures = TeX]{FreeSerif}
+
+%% Tarpai tarp eilučių 1.5.
+%% Tai ne tas pats, kaip Word'o ar Writer'io 1.5. Čia tarpai mažesni. Tokius tarpus, kaip Word'e, padaryt galima su \linespread{1.5}.
+\RequirePackage{setspace}
+\onehalfspacing
+
+%% Pastraipų įtrauka.
+\setlength\parindent{1cm}
+
+%% Barjerai float'ams.
+\RequirePackage{placeins}
+%% Reikalinga, kad nuorodos į float'us nuvestų į jų viršų.
+\RequirePackage[all]{hypcap}
+
+%% Poraštė: kairėje skyriaus numeris ir pavadinimas, dešinėje puslapio numeris.
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\let\footrulewidth\headrulewidth
+\renewcommand{\headrulewidth}{0pt}
+\rfoot{\thepage}
+\lfoot{\leftmark}
+
+%%------------------------------------------------------------------------------
+
+%% MIF'o reikalavimai šiek tiek kreivi.
+\newcommand{\MIFBullshitSection}[1]{
+  \section*{#1}
+  \addcontentsline{toc}{section}{#1}
+  \markboth{\uppercase{#1}}{\uppercase{#1}}
+}
