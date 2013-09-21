@@ -9,20 +9,30 @@ Kosminių laivų lenktynės futuristiniame mieste.
 
 %% TODO: gal suskirstyt į subsubsection?
 
+
+
+\subsubsection{Žaidimo taisyklės}
+
 Lenktynės vyksta futuristiniame mieste, tarp pastatų.
 Miestas ir trasa generuojami atsitiktinai.
+Tikslas - kuo greičiau įveikti trasą.
+%% Gal dar reiktų power-up'ų? :D
+Atsitrenkus į kliūtį prie laiko pridedamas nustatytas kiekis sekundžių.
+Taip pat egzistuoja galimybė žaisti smėlio dežės režimu - neskaičiuojant laiko ir be punktų.
 
-\placeholder{žaidimo tikslas; galbūt žaidėjo pasirodymą galima įvertinti kokiais nors taškais?}
+\subsubsection{Žaidimo aplinka}
 
-Miestas sudarytas iš aukštų, stačiakampio formos pastatų.
+Miestas sudarytas iš įvairių aukštų, daugiakampio formos pastatų (t.y. tiek stačiakampiai, tiek sudėtingesnių formų).
+Kai kuriuose didesniuose pastatuose būtų tuneliai, ertmės pro kurias galima būtų sutrumpinti kelią
+(nors ir rizikuojant savo rezultatu).
+Statiniai minimaliai apipavidalinti - neoninės briaunos, vientisos tekstūros be jokių detalių.
+Tokiu būdu būtų išvengta prastai atrodančių, į tikroviškumą orientuotų pastatų.
 %% Atkreipkit dėmesį: ne vien kvadratinių. Kai kurie galėtų būt sudėtingesnių formų: L, T.
 %% Štai ką turiu galvoje, sakydamas "pastatas" (tik gal ne tokios formos): http://goo.gl/frMjYg.
 %% Kai kurie pastatai galėtų turėti tunelius viduje, pavyzdžiui: http://goo.gl/r6eJhi. Žinoma, tai prasminga tik tada, jei pastatas pakankamai platus.
-Jie mieste išdėstomi atsitiktinai.
 
-Trasa generuojama atsitiktinai.
 %% Miestą įsivaizduoju kaip kvadratinio tinklelio pavidalo grafą. Pastatai užima vieną ar daugiau veidų (tokiu atveju kai kurių briaunų trūksta).
-Ji sudaryta iš:
+Trasa sudaryta iš:
 \begin{enumerate}
 \item Kontrolės punktų, per kuriuos laivas turi praskristi.
       %% Kitaip tariant, grafo mazgas.
@@ -33,10 +43,14 @@ Aplink trasą skrendama tik vieną kartą.
 
 Žaidėjas iš karto nematys visos trasos; ji atskleidžiama lenktynių bėgyje.
 %% Kraštutiniu atveju vienu metu galėtų būti rodomas tik vienas kontrolės punktas/ruožas. Žaidėjui jį pasiekus, parodomas kitas.
-Trasa žaidėjui rodoma mini-žemėlapyje.
+Sekantis trasos kontrolės punktas ar ruožas žaidėjui rodomas mini-žemėlapyje.
 
-Žaidėjas pilotuos kosminį laivą.
-Laivo valdyme ir fizikoje nebus siekiama visiško realizmo.
+\subsubsection{Žaidėjo valdomas objektas}
+
+Žaidėjas pilotuos itin greitą futuristinę skraidyklę panašią į kosminį laivą.
+Jos valdyme ir fizikoje nebus siekiama visiško realizmo. Gravitacija skraidyklės neveiks
+arba veiks labai minimaliai. Skrendant pakeliui bus įmanoma pačiupti laikinus patobulinimus,
+suteikiančius daugiau galios.
 Valdymas bus sudėtingas, bet ne dirbtinai apsunkintas.
 %% Pavyzdžiui, galėtų būt horizontalūs ir vertikalūs strafe'ai. Laivas galės pasisukt visom 3 ašim (taigi, ir skrist aukštyn kojom).
 Jo sudėtingumas turėtų žaidimui suteikti ilgą (bet nebūtinai stačią) mokymosi kreivę, kaip kad yra daugelyje elektroninio sporto šakų.
@@ -46,6 +60,8 @@ Laivas nebus per daug manevringas.
 Žaidimas bus pakankamai sunkus ir sudėtingas, kad galėtų būti elektroninio sporto šaka.
 Jis reikalaus fizinių sugebėjimų -- gero reakcijos laiko ir erdvės suvokimo.
 %% Kitaip tariant, greičiai bus vos vos suvokiami amfetamino nepririjusiam gamer'iui.
+
+\subsubsection{Žaidimo apipavidalinimas}
 
 Žaidime dominuos šviesios spalvos.
 Šešėliai bus neintensyvūs.
