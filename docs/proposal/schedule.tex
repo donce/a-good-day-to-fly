@@ -1,11 +1,35 @@
 \section{Preliminarus darbų tvarkaraštis}
 
-Nuo darbo pradžios iki spalio 6 d. - dokumentacijos rašymas, prototipo kūrimas.
+\newcommand{\schedule}[1]{
+    \tabulinesep = 3mm
+    \taburowcolors{white .. gray!20}
+    \begin{longtabu}{ X[c, m] X[c, m] }
+        \textbf{Laikas} & \textbf{Veikla} \\
+        \endhead
+        \tabucline{-}
+        #1
+    \end{longtabu}
+    \tabureset
+}
 
-Nuo spalio 6 d. iki lapkričio 3 d. - prototipo kūrimas pristatymui.
+\newcommand{\scheduleEntry}[2]{
+    #1 & #2 \\
+}
 
-Lapkričio 3 d. - pirmojo prototipo atsiskaitymas.
-
-Nuo lapkričio 3 d. iki gruodžio 1 d. - prototipo išbaigimas.
-
-Gruodžio 1 d. - baigto žaidimo prototipo atsiskaitymas.
+\schedule{
+    \scheduleEntry
+    {Darbo pradžia -- spalio 6 d.}
+    {Dokumentacijos rašymas, prototipo kūrimas.}
+    \scheduleEntry
+    {Spalio 6 d. -- lapkričio 3 d.}
+    {Prototipo kūrimas pristatymui.}
+    \scheduleEntry
+    {Lapkričio 3 d.}
+    {Pirmojo prototipo atsiskaitymas.}
+    \scheduleEntry
+    {Lapkričio 3 d. -- gruodžio 1 d.}
+    {Prototipo užbaigimas.}
+    \scheduleEntry
+    {Gruodžio 1 d.}
+    {Baigto žaidimo prototipo atsiskaitymas.}
+}
