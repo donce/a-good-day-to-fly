@@ -3,6 +3,7 @@
 Dokumentai direktorijose išdėstyti taip:
 
 * [proposal/](proposal) - projekto pasiūlymas.
+* [design/](design) - žaidimo projekto ir dizaino dokumentacija.
 
 Kiekvienas dokumentas turi tokius failus:
 
@@ -23,7 +24,7 @@ Visuose dokumentuose galima naudoti tokias papildomas LaTeX komandas:
 
 # Priklausomybės
 
-Dokumentų kompiliavimui reikalingus paketus Ubuntu operacinėje sistemoje galima instaliuoti komanda:
+Dokumentų kompiliavimui reikalingus paketus Ubuntu 13.04 operacinėje sistemoje galima instaliuoti komanda:
 
 ```bash
 sudo apt-get install make git texlive-full fonts-freefont-otf

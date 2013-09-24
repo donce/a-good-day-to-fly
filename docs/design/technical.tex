@@ -1,0 +1,36 @@
+\section{Techninė apžvalga}
+
+Žaidimas bus kuriamas naudojant Unity žaidimų variklį.
+
+\subsection{Miesto generatorius}
+
+Miestas bus modeliuojamas kaip kvadratinis tinklelis.
+Miesto generavimui bus paruoštas rinkinys polyomino\footnote{\url{http://en.wikipedia.org/wiki/Polyomino}} formos pastatų.
+Generatorius šį tinklelį padengs atsitiktinai parinktais pastatais iš pastatų rinkinio.
+
+Detalus miesto generavimo algoritmo aprašymas:
+\begin{enumerate}
+\item Sudaromas kvadratinio tinklelio pavidalo grafas $G = (V, E)$.
+\item Visos $E$ priklausančios briaunos, išskyrus kraštines, įtraukiamos į aibę $S$.
+\item \label{itm:selection}
+    Iš aibės $S$ atsitiktinai parenkama briauna $ab$.
+\item \label{itm:removal}
+    Nagrinėjama, kas atsitiktų, pašalinus iš $E$ briauną $ab$.
+    Po briaunos pašalinimo grafe atsirastų naujas veidas $f$.
+    Tikrinama, ar turimame pastatų rinkinyje yra bent vienas $f$ formos pastatas.
+    Jei taip, briauna $ab$ pašalinama iš aibės $E$.
+    Jei pašalinus briauną $ab$, viršūnės $a$ arba viršūnės $b$ valentingumas tampa lygus $1$, atitinkama viršūnė ir likusi jai incidenti briauna šalinama iš $G$.
+    Bet kuriuo atveju $e$ pašalinama iš aibės $S$ ir toliau nebenagrinėjama.
+\item Žingsniai \ref{itm:selection}--\ref{itm:removal} kartojami tol, kol aibėje $S$ nebelieka briaunų.
+\item Kiekvienam grafo veidui atsitiktinai parenkamas pastatas, kurio forma sutampa su veido forma.
+\item Trasa sudaroma iš atsitiktinai parinktų $V$ priklausančių viršūnių.
+\end{enumerate}
+
+Jei pastatų rinkinyje bus bent vienas $1 \times 1$ pastatas, algoritmas tikrai duos teisingą rezultatą.
+
+Algoritmo ribotumai:
+\begin{itemize}
+\item Jei pastatas nėra paprastai sujungtas\footnote{\url{http://en.wikipedia.org/wiki/Simply_connected_space}}, jame būtinai turi būti ertmė, leidžianti pasiekti jo viduje esančius grafo mazgus.
+\item Jei pastate yra akligatvio pavidalo ertmė, jos viduje esantis mazgas negali būti įtrauktas į trasą (jis bus pašalintas iš $V$).
+\end{itemize}
+Paprasčiausias būdas išspręsti šias problemas būtų uždrausti tokius pastatus, tačiau abi problemas galima išspręsti kartu su pastato forma saugant jo "pralaidumo" informaciją.

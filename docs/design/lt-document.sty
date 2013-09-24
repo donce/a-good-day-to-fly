@@ -1,0 +1,90 @@
+%%
+%% lt-document.sty
+%% Bendras lietuviškų dokumentų stilius ir dažniausiai naudojamos komandos.
+%%
+
+\ProvidesPackage{lt-document}
+
+%% -----------------------------------------------------------------------------
+
+%% Lietuviški rašmenys, lietuviškų žodžių skirstymas į skiemenis, lietuviški kai kurių dokumento dalių pavadinimai.
+\RequirePackage{polyglossia}
+\setdefaultlanguage{lithuanian}
+
+%% Atitraukti pirmą pastraipą.
+\RequirePackage{indentfirst}
+
+%% Pervadinti "Santrauką" į "Anotaciją".
+\AtBeginDocument{\renewcommand{\abstractname}{Anotacija}}
+
+%% Įterpti į priedo antraštę ir turinį žodį "Priedas".
+\RequirePackage[title, titletoc]{appendix}
+
+%% Protingas kablelis skaičiams rašyti.
+\RequirePackage{icomma}
+
+%% "" paversti lietuviškomis (kind of) kabutėmis.
+%% Jei reikia kabučių kabutėse... jums labai nepasisekė.
+\RequirePackage[style = german, strict]{csquotes}
+\MakeOuterQuote{"}
+
+%% Vengti pavienių eilučių puslapio pabaigoje ar pradžioje.
+\widowpenalty 2000
+\clubpenalty 2000
+
+%% Sąrašus numeruoti arabiškais skaitmenimis.
+\RequirePackage{enumitem}
+\setlist[enumerate]{label* = \arabic*., ref = \arabic*}
+
+%% Sudaryti nuorodas dokumento viduje (turinys, nuorodos į paveikslus ir lenteles, e-pašto adresai).
+\RequirePackage[hidelinks]{hyperref}
+
+%% Literatūros sąrašo stilius.
+\RequirePackage[backend = biber, sortlocale = lt_LT, style = alphabetic, maxcitenames = 3, mincitenames = 3, maxbibnames = 99]{biblatex}
+\renewcommand*{\finalnamedelim}{\addspace ir\space}
+% \addbibresource{bibliography.bib}
+
+%% Įvairūs naudingi paketai.
+\RequirePackage{tabu}
+\RequirePackage[table]{xcolor}
+\RequirePackage{etoolbox}
+
+%% -----------------------------------------------------------------------------
+
+%% Leidžia įterpti vaizdus.
+\RequirePackage{graphicx}
+\graphicspath{{./images/}}
+%% Įterpia vaizdą su žyme.
+%% Žymės pavadinimas sutampa su perduodamu failo pavadinimu. Apibūdinimas naudojamas kaip antraštė.
+%% \insertPicture[dydis]{failo-pavadinimas-be-plėtinio}{trumpas vaizdo apibūdinimas}
+\newcommand{\insertPicture}[3][1.0]{%
+  \begin{figure}[p]
+      \centering
+      \includegraphics[
+      width = {
+        \ifdim #1\Gin@nat@width > \linewidth
+        \linewidth
+        \else
+        #1\Gin@nat@width
+        \fi
+      },
+      height = {
+        \ifdim #1\Gin@nat@height > \textheight
+        \textheight
+        \else
+        #1\Gin@nat@height
+        \fi
+      },
+      keepaspectratio]{#2}
+      \caption{#3}
+      \label{fig:#2}
+  \end{figure}
+}
+
+%% Įterpia tekstinę nuorodą į vaizdą, įterptą su \insertPicture.
+%% \referToPicture{failo-pavadinimas-be-plėtinio}
+\newcommand{\referToPicture}[1]{\hyperref[fig:#1]{\ref*{fig:#1} pav.}}
+
+%% Žymi įmonės pavadinimą arba produkto/paslaugos pavadinimą.
+%% \trademark{pavadinimas}
+\newcommand{\trademark}{\textit}
