@@ -15,13 +15,10 @@ final:
 	xelatex $(PASS_2_FLAGS) '$(FINAL_CONTENT)'
 	xelatex $(PASS_2_FLAGS) '$(FINAL_CONTENT)'
 
-todo:
-	grep -Eir 'TODO:|UNKNOWN:|FIXME:' . --exclude=Makefile
-
 clean:
 	rm -f *.aux *.bbl *.bcf *.blg *.log *.out *.run.xml *.toc
 
 clear: clean
 	rm -f *.pdf
 
-.PHONY: default draft final todo clean clear
+.PHONY: draft final clean clear
