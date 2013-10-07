@@ -1,12 +1,10 @@
 \section{Darbų tvarkaraštis}
 
-%% TODO: Papildyt lentelę atsakingo komandos nario stulpeliu.
-
 \newcommand{\schedule}[1]{
     \tabulinesep = 3mm
     \taburowcolors{white .. gray!20}
-    \begin{longtabu}{ X[c, m] X[c, m] }
-        \textbf{Laikas} & \textbf{Veikla} \\
+    \begin{longtabu}{ X[c, m] X[c, m] X[c, m] }
+        \textbf{Laikas} & \textbf{Veikla} & \textbf{Atsakingas narys} \\
         \endhead
         \tabucline{-}
         #1
@@ -14,27 +12,29 @@
     \tabureset
 }
 
-\newcommand{\scheduleEntry}[2]{
-    #1 & #2 \\
+\newcommand{\scheduleEntry}[3]{
+    #1 & #2 & #3 \\
 }
-
-%% TODO: Reikia tiksliau (sudaryt WBS).
-%% TODO: Prie kiekvieno darbo nurodyt atsakingą komandos narį.
 
 \schedule{
     \scheduleEntry
     {Darbo pradžia -- spalio 6 d.}
     {Dokumentacijos rašymas, prototipo kūrimas.}
+    {Visi}
     \scheduleEntry
     {Spalio 6 d. -- lapkričio 3 d.}
     {Prototipo kūrimas pristatymui.}
+    {Visi}
     \scheduleEntry
     {Lapkričio 3 d.}
     {Pirmojo prototipo atsiskaitymas.}
+    {Visi}
     \scheduleEntry
     {Lapkričio 3 d. -- gruodžio 1 d.}
     {Prototipo užbaigimas.}
+    {Visi}
     \scheduleEntry
     {Gruodžio 1 d.}
     {Baigto žaidimo prototipo atsiskaitymas.}
+    {Visi}
 }
