@@ -1,5 +1,4 @@
 BOOK_NAME    := main
-SOURCE_FILES := $(wildcard *.tex *.sty *.bib)
 PASS_1_FLAGS := -output-directory=./
 PASS_2_FLAGS := $(PASS_1_FLAGS) -interaction=batchmode
 

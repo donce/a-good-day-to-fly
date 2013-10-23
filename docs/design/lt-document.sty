@@ -32,9 +32,10 @@
 \widowpenalty 2000
 \clubpenalty 2000
 
-%% Sąrašus numeruoti arabiškais skaitmenimis.
+%% Sąrašus numeruoti arabiškais skaitmenimis. Sumažinti atskyrimą tarp sąrašo elementų.
 \RequirePackage{enumitem}
 \setlist[enumerate]{label* = \arabic*., ref = \arabic*}
+\setlist{topsep = 4pt, parsep = 0pt}
 
 %% Sudaryti nuorodas dokumento viduje (turinys, nuorodos į paveikslus ir lenteles, e-pašto adresai).
 \RequirePackage[hidelinks]{hyperref}
