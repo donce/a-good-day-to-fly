@@ -1,1 +1,5 @@
 Temp
+*.csproj
+*.pidb
+*.sln
+*.userprefs
