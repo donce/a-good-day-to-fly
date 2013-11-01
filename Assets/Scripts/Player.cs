@@ -15,17 +15,17 @@ public class Player : MonoBehaviour {
 	void Update () {
 		float rotation = rotationSpeed * Time.deltaTime;
 		if (Input.GetKey(KeyCode.A))
-			transform.Rotate(new Vector3(0, -rotation, 0));
+			rigidbody.transform.Rotate(Vector3.up, -rotation);
 		if (Input.GetKey(KeyCode.D))
-			transform.Rotate(new Vector3(0, rotation, 0));
+			rigidbody.transform.Rotate(Vector3.up, rotation);
 		if (Input.GetKey(KeyCode.J))
-			transform.Rotate(new Vector3(0, 0, rotation));
+			rigidbody.transform.Rotate(Vector3.forward, rotation);
 		if (Input.GetKey(KeyCode.L))
-			transform.Rotate(new Vector3(0, 0, -rotation));
+			rigidbody.transform.Rotate(Vector3.forward, -rotation);
 		if (Input.GetKey(KeyCode.W))
-			transform.Rotate(new Vector3(-rotation, 0, 0));
+			rigidbody.transform.Rotate(Vector3.right, -rotation);
 		if (Input.GetKey(KeyCode.S))
-			transform.Rotate(new Vector3(rotation, 0, 0));
+			rigidbody.transform.Rotate(Vector3.right, rotation);
 		
 		
 		if (Input.GetKey(KeyCode.I))
@@ -35,6 +35,6 @@ public class Player : MonoBehaviour {
 		speed = Mathf.Max(minSpeed, speed);
 		speed = Mathf.Min(maxSpeed, speed);
 		
-		transform.Translate(Vector3.forward * speed * Time.deltaTime);
+		rigidbody.transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
 }
