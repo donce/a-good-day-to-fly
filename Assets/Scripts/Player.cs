@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey(KeyCode.S))
 			rigidbody.transform.Rotate(Vector3.right, -rotation);
 		
-		float speedChange = slowingSpeed;
+		float speedChange = -slowingSpeed;
 		if (Input.GetKey(KeyCode.I))
 			speedChange = acceleration;
 		if (Input.GetKey(KeyCode.K))
