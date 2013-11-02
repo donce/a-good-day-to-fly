@@ -13,11 +13,14 @@ public class WorldGenerator : MonoBehaviour {
 			Generate();
 	}
 	
+	void BuildObject(int x, int y, int objectNumber) {
+		Vector3 pos = new Vector3(x * building_width, 0, y * building_height);
+		Instantiate(buildings[objectNumber], pos, Quaternion.identity);
+	}
+	
 	void Generate() {
 		for (int i = 0; i < width; ++i)
-			for (int j = 0; j < height; ++j) {
-				Vector3 pos = new Vector3(i * building_width, 0, j * building_height);
-				Instantiate(buildings[0], pos, Quaternion.identity);
-			}
+			for (int j = 0; j < height; ++j)
+				BuildObject (i, j, 0);
 	}
 }
