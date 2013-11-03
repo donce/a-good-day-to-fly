@@ -1,26 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class WorldGenerator : MonoBehaviour {
-	
-	public GameObject[] buildings;
-	
-	public int width, height;
-	public int building_width, building_height;
-	
+
+	public GameObject basicBuilding;
+
+	public int tilesX = 20;
+	public int tilesY = 20;
+	public int tileWidth = 20;
+	public int tileHeight = 20;
+
 	void Awake() {
-		if (buildings.Length > 0)
-			Generate();
+		for (int i = 0; i < tilesX; i += 2) {
+			for (int j = 0; j < tilesY; j += 2) {
+				BuildBasic(i, j);
+			}
+		}
 	}
-	
-	void BuildObject(int x, int y, int objectNumber) {
-		Vector3 pos = new Vector3(x * building_width, 0, y * building_height);
-		Instantiate(buildings[objectNumber], pos, Quaternion.identity);
-	}
-	
-	void Generate() {
-		for (int i = 0; i < width; ++i)
-			for (int j = 0; j < height; ++j)
-				BuildObject (i, j, 0);
+
+	void BuildBasic(int x, int y) {
+		Vector3 pos = new Vector3(x * tileWidth, y * tileHeight, 0);
+		Instantiate(basicBuilding, pos, Quaternion.identity);
 	}
 }
