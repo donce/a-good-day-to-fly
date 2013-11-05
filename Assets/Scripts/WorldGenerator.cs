@@ -18,7 +18,7 @@ public class WorldGenerator : MonoBehaviour {
 	}
 
 	void BuildBasic(int x, int y) {
-		Vector3 pos = new Vector3(x * tileWidth, y * tileHeight, 0);
+		Vector3 pos = new Vector3(x * tileWidth, 0, y * tileHeight);
 		Instantiate(basicBuilding, pos, Quaternion.identity);
 	}
 }
