@@ -4,12 +4,12 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	private float speed = 10;
 	
-	const float minSpeed = 10;
-	const float maxSpeed = 200;
-	const float rotationSpeed = 100;
+	public float minSpeed = 10;
+	public float maxSpeed = 200;
+	public float rotationSpeed = 100;
 	
-	const float acceleration = 100;
-	const float slowingSpeed = 20;
+	public float acceleration = 100;
+	public float slowingSpeed = 20;
 	
 	void Start () {
 	}
