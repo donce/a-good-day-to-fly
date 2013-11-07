@@ -434,8 +434,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 871420830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 215.457642, y: 18.1262054, z: 237.106583}
-  m_LocalScale: {x: 400, y: 2, z: 400}
+  m_LocalPosition: {x: 500, y: -1, z: 500}
+  m_LocalScale: {x: 1000, y: 2, z: 1000}
   m_Children: []
   m_Father: {fileID: 922026284}
 --- !u!1 &922026283
@@ -461,7 +461,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 922026283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.4576445, y: -19.1262054, z: -37.1065865}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 871420834}
@@ -478,11 +478,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88973a3f456fc14f92e2defb0ebe82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 100000, guid: 162db0d7bd3a227469a40c2f37569a0c, type: 2}
+  basicBuilding: {fileID: 100000, guid: 8b5ab80fface3db4485d6eb354ea7b53, type: 2}
   tilesX: 20
   tilesY: 20
-  tileWidth: 20
-  tileHeight: 20
 --- !u!1 &1130834990
 GameObject:
   m_ObjectHideFlags: 0

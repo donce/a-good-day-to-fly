@@ -3,11 +3,11 @@
 public class WorldGenerator : MonoBehaviour {
 
 	public GameObject basicBuilding;
-
 	public int tilesX = 20;
 	public int tilesY = 20;
-	public int tileWidth = 20;
-	public int tileHeight = 20;
+
+	public const int tileWidth = 50;
+	public const int tileHeight = 50;
 
 	void Awake() {
 		for (int i = 0; i < tilesX; i += 2) {
