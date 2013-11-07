@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7904c467457f024a9291bf8420f5ccb
+guid: 0814d14a2f6f1944ea11780c4bdb46f9
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -8,7 +8,6 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: building
-    6400000: //RootNode
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -29,7 +28,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -42,7 +41,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 0
+    splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
