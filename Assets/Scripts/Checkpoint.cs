@@ -5,17 +5,23 @@ public class Checkpoint : MonoBehaviour {
 	
 	GameObject player;
 	
-	// Use this for initialization
+	public Checkpoint next = null;
+	
 	void Start () {
 		player = GameObject.Find("Player");
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		transform.LookAt(player.transform.position);
 	}
+	
 	void OnTriggerEnter(Collider other) {
 		Debug.Log(other);
 		Destroy(gameObject);
+		if (next)
+			next.gameObject.SetActive(true);
+		else
+			Debug.Log("Finish");
 	}
+	
 }
