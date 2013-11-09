@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
 	public float acceleration = 100;
 	public float slowingSpeed = 20;
 	
+	public Checkpoint currentCheckpoint;
+	
 	void Start () {
 	}
 	
@@ -37,7 +39,9 @@ public class Player : MonoBehaviour {
 		speed += speedChange * Time.deltaTime;
 		speed = Mathf.Max(minSpeed, speed);
 		speed = Mathf.Min(maxSpeed, speed);
-		
+		GameObject.Find("GuiSpeed").GetComponent<GUIText>().text = ((int)(speed * 3.6)).ToString() + " km/h";
+		if (currentCheckpoint)
+			GameObject.Find("Arrow").transform.LookAt(currentCheckpoint.transform.position);
 		rigidbody.transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
 }

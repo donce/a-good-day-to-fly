@@ -7,6 +7,8 @@ public class WorldGenerator : MonoBehaviour {
 	public int tilesX = 20;
 	public int tilesY = 20;
 	
+	public int checkpointsCount = 5;
+	
 	public const int tileWidth = 100;
 	public const int tileHeight = 100;
 	
@@ -28,18 +30,16 @@ public class WorldGenerator : MonoBehaviour {
 		
 		int nx, ny;
 		int px = cx, py = cy;
-		for (int i = 0; i < 10; ++i) {
+		for (int i = 0; i < checkpointsCount; ++i) {
 			nx = Random.Range(1, tilesX-1);
 			ny = Random.Range(1, tilesY-1);
 			while (nx != px) {
 				px += nx > px ? 1 : -1;
 				a[px, py] = false;
-				Debug.Log(px.ToString() + " " + py.ToString());
 			}
 			while (ny != py) {
 				py += ny > py ? 1 : -1;
 				a[px, py] = false;
-				Debug.Log(px.ToString() + " " + py.ToString());
 			}
 			px = nx;
 			py = ny;
@@ -50,10 +50,6 @@ public class WorldGenerator : MonoBehaviour {
 			for (int j = 0; j < tilesY; ++j)
 				if (a[i, j])
 					BuildBasic(i, j);
-		
-		AddCheckpoint(-1, 2);
-		AddCheckpoint(-1, 5);
-		AddCheckpoint(-1, 8);
 	}
 	
 	Vector3 getPosition(int x, int y, int height = 0, bool center = false) {
@@ -78,7 +74,8 @@ public class WorldGenerator : MonoBehaviour {
 			lastCheckpoint.next = checkpoint;
 		}
 		else
-			checkpoint.gameObject.SetActive(true);
+			
+			checkpoint.gameObject.GetComponent<Checkpoint>().Activate();
 		lastCheckpoint = checkpoint;
 	}
 }

@@ -3,25 +3,30 @@ using System.Collections;
 
 public class Checkpoint : MonoBehaviour {
 	
-	GameObject player;
+	GameObject target;
 	
 	public Checkpoint next = null;
 	
-	void Start () {
-		player = GameObject.Find("Player");
+	void Awake() {
+		target = GameObject.Find("Camera");
+		next = null;
 	}
 	
-	void Update () {
-		transform.LookAt(player.transform.position);
+	void Update() {
+		transform.LookAt(target.transform.position);
 	}
 	
 	void OnTriggerEnter(Collider other) {
-		Debug.Log(other);
 		Destroy(gameObject);
 		if (next)
-			next.gameObject.SetActive(true);
+			next.Activate();
 		else
 			Debug.Log("Finish");
+	}
+	
+	public void Activate() {
+		gameObject.SetActive(true);
+		GameObject.Find("Player").gameObject.GetComponent<Player>().currentCheckpoint = this;
 	}
 	
 }
