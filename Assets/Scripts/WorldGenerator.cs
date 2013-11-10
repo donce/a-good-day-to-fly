@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class WorldGenerator : MonoBehaviour {
 	
+	// FIXME: Some of the following are redundant.
 	/* Prefabs. */
 	public GameObject basicBuilding;
 	public GameObject groundTile;
@@ -12,13 +13,15 @@ public class WorldGenerator : MonoBehaviour {
 	public int tilesX = 20;
 	public int tilesY = 20;
 	public int tileScale = 100;
-	public float rejectRate = 0.3f;
+	public float rejectRate = 0.5f;
 	/* Spawning parameters. */
 	public float playerHeight = 100;
 	public float checkpointHeight = 100;
 	
+	/* List of available spawnpoints. It gets filled in Awake(). */
+	public readonly List<IntPair> spawnpoints = new List<IntPair>();
+	
 	private System.Random ranGen = new System.Random();
-	private readonly List<IntPair> spawnpoints = new List<IntPair>();
 	
 	public class IntPair {
 		public readonly int x;
@@ -33,12 +36,33 @@ public class WorldGenerator : MonoBehaviour {
 		GenerateMap();
 		
 		/* Place the player. */
-		// FIXME: Might be a better idea to Instantiate the player instead.
+		// FIXME: It would probably be a better idea to Instantiate() the player instead.
 		player = GameObject.Find("Player");
 		var ps = RandSpawnpoint();
 		player.transform.position = GetUnityPos(ps.x, ps.y,playerHeight, true);
 		
-		SpawnCheckpoint();
+		/* Place a single checkpoint in a random location. */
+		// FIXME: It would probably be a better idea to place this in some other script.
+		SpawnCheckpoint(RandSpawnpoint());
+	}
+	
+	/* Select a random spawnpoint from the field spawnpoints.
+	 * May be redundant. The field spawnpoints is public.
+	 */
+	public IntPair RandSpawnpoint() {
+		return spawnpoints[ranGen.Next(spawnpoints.Count)];
+	}
+	
+	/* Spawn a single checkpoint in the specified tile. */
+	// FIXME: Redundant. Remove this method and use SpawnObject() instead.
+	public GameObject SpawnCheckpoint(IntPair tile) {
+		return SpawnObject(checkpointPrefab, tile, checkpointHeight);
+	}
+	
+	/* Place an active game object in the specified tile. */
+	public GameObject SpawnObject(Object gameObject, IntPair tile, float height) {
+		Vector3 pos = GetUnityPos(tile.x, tile.y, height, true);
+		return Instantiate(gameObject, pos, Quaternion.identity) as GameObject;
 	}
 	
 	/* Fill the map with buildings and ground tiles. */
@@ -86,31 +110,11 @@ public class WorldGenerator : MonoBehaviour {
 		instance.transform.localScale = new Vector3(tileScale, tileScale, tileScale);
 	}
 	
-	/* Place an active game object in the specified tile. */
-	private GameObject PlaceActive(Object gameObject, int x, int y, float height) {
-		Vector3 pos = GetUnityPos(x, y, height, true);
-		var instance = Instantiate(gameObject, pos, Quaternion.identity) as GameObject;
-		return instance;
-	}
-	
 	/* Transform tile coordinates to Unity coordinates. */
 	private Vector3 GetUnityPos(int x, int y, float height = 0, bool center = false) {
 		float nx = x + (center ? 0.5f : 0f);
 		float ny = y + (center ? 0.5f : 0f);
 		return new Vector3(nx * tileScale, height, ny * tileScale);
-	}
-	
-	/* Select a random spawnpoint from the field spawnpoints. */
-	private IntPair RandSpawnpoint() {
-		return spawnpoints[ranGen.Next(spawnpoints.Count)];
-	}
-	
-	/* Spawn a single checkpoint in a random location. */
-	public void SpawnCheckpoint() {
-		var cs = RandSpawnpoint();
-		var checkPoint = PlaceActive(checkpointPrefab, cs.x, cs.y, checkpointHeight);
-		if (player)
-			player.gameObject.GetComponent<Player>().currentCheckpoint = checkPoint;
 	}
 	
 }
