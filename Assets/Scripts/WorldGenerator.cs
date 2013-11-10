@@ -1,81 +1,112 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class WorldGenerator : MonoBehaviour {
-
+	
+	/* Prefabs. */
 	public GameObject basicBuilding;
-	public Checkpoint checkpointPrefab;
+	public GameObject groundTile;
+	public GameObject checkpointPrefab;
+	/* Generation parameters. */
 	public int tilesX = 20;
 	public int tilesY = 20;
+	public int tileScale = 100;
+	public float rejectRate = 0.3f;
+	/* Spawning parameters. */
+	public float playerHeight = 100;
+	public float checkpointHeight = 100;
 	
-	public int checkpointsCount = 5;
+	private System.Random ranGen = new System.Random();
+	private readonly List<IntPair> spawnpoints = new List<IntPair>();
 	
-	public const int tileWidth = 100;
-	public const int tileHeight = 100;
-	
-	private Checkpoint lastCheckpoint = null;
-	
-	void Awake() {
-		bool[,] a = new bool[tilesX, tilesY];
-		for (int i = 0; i < tilesX; ++i)
-			for (int j = 0; j < tilesY; ++j)
-				a[i, j] = true;
-		
-		int cx = tilesX / 2;
-		int cy = tilesY / 2;
-		for (int i = cx-1; i <= cx+1; ++i)
-			for (int j = cy-1; j < cy+1; ++j)
-				a[i, j] = false;
-		GameObject player = GameObject.Find("Player");
-		player.transform.position = getPosition(cx, cy, 50, true);
-		
-		int nx, ny;
-		int px = cx, py = cy;
-		for (int i = 0; i < checkpointsCount; ++i) {
-			nx = Random.Range(1, tilesX-1);
-			ny = Random.Range(1, tilesY-1);
-			while (nx != px) {
-				px += nx > px ? 1 : -1;
-				a[px, py] = false;
-			}
-			while (ny != py) {
-				py += ny > py ? 1 : -1;
-				a[px, py] = false;
-			}
-			px = nx;
-			py = ny;
-			AddCheckpoint(nx, ny);
+	public class IntPair {
+		public readonly int x;
+		public readonly int y;
+		public IntPair(int x, int y) {
+			this.x = x;
+			this.y = y;
 		}
-		
-		for (int i = 0; i < tilesX; ++i)
-			for (int j = 0; j < tilesY; ++j)
-				if (a[i, j])
-					BuildBasic(i, j);
 	}
 	
-	Vector3 getPosition(int x, int y, int height = 0, bool center = false) {
+	public void Awake() {
+		GenerateMap();
+		
+		/* Place the player. */
+		// FIXME: Might be a better idea to Instantiate the player instead.
+		GameObject player = GameObject.Find("Player");
+		var ps = RandSpawnpoint();
+		player.transform.position = GetUnityPos(ps.x, ps.y,playerHeight, true);
+		
+		SpawnCheckpoint();
+	}
+	
+	/* Fill the map with buildings and ground tiles. */
+	private void GenerateMap() {
+		var tileOpen = GenerateOpen();
+		
+		for(int x = 0; x < tilesX; x++) {
+			for(int y = 0; y < tilesY; y++) {
+				if(tileOpen[x, y]) {
+					PlaceTile(groundTile, x, y);
+					spawnpoints.Add(new IntPair(x, y));
+				}
+				else {
+					PlaceTile(basicBuilding, x, y);
+				}
+			}
+		}
+	}
+	
+	/* Generate the openness grid. */
+	private bool[,] GenerateOpen() {
+		var open = new bool[tilesX, tilesY];
+		
+		/* Iterate through all tiles. */
+		for(int x = 0; x < tilesX; x++) {
+			for(int y = 0; y < tilesY; y++) {
+				if(!(x % 2 == 0 && y % 2 == 0)) {
+					open[x, y] = true;
+				}
+				else {
+					if(ranGen.NextDouble() < rejectRate) {
+						open[x, y] = true;
+					}
+				}
+			}
+		}
+		
+		return open;
+	}
+	
+	/* Place a tile prefab in the specified tile. */
+	private void PlaceTile(Object gameObject, int x, int y) {
+		Vector3 pos = GetUnityPos(x, y);
+		var instance = Instantiate(gameObject, pos, Quaternion.identity) as GameObject;
+		instance.transform.localScale = new Vector3(tileScale, tileScale, tileScale);
+	}
+	
+	/* Place an active game object in the specified tile. */
+	private void PlaceActive(Object gameObject, int x, int y, float height) {
+		Vector3 pos = GetUnityPos(x, y, height, true);
+		var instance = Instantiate(gameObject, pos, Quaternion.identity) as GameObject;
+	}
+	
+	/* Transform tile coordinates to Unity coordinates. */
+	private Vector3 GetUnityPos(int x, int y, float height = 0, bool center = false) {
 		float nx = x + (center ? 0.5f : 0f);
 		float ny = y + (center ? 0.5f : 0f);
-		return new Vector3(nx * tileWidth, height, ny * tileHeight);
+		return new Vector3(nx * tileScale, height, ny * tileScale);
 	}
 	
-	Object BuildObject(Object gameObject, int x, int y, int height = 0, bool center = false) {
-		Vector3 pos = getPosition(x, y, height, center);
-		return Instantiate(gameObject, pos, Quaternion.identity);
+	/* Select a random spawnpoint from the field spawnpoints. */
+	private IntPair RandSpawnpoint() {
+		return spawnpoints[ranGen.Next(spawnpoints.Count)];
 	}
 	
-	void BuildBasic(int x, int y) {
-		BuildObject(basicBuilding, x, y);
+	/* Spawn a single checkpoint in a random location. */
+	public void SpawnCheckpoint() {
+		var cs = RandSpawnpoint();
+		PlaceActive(checkpointPrefab, cs.x, cs.y, checkpointHeight);
 	}
 	
-	void AddCheckpoint(int x, int y) {
-		Checkpoint checkpoint = (Checkpoint)BuildObject(checkpointPrefab, x, y, 50, true);
-		if (lastCheckpoint) {
-			checkpoint.gameObject.SetActive(false);
-			lastCheckpoint.next = checkpoint;
-		}
-		else
-			
-			checkpoint.gameObject.GetComponent<Checkpoint>().Activate();
-		lastCheckpoint = checkpoint;
-	}
 }
