@@ -256,7 +256,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!4 &523456512
 Transform:
@@ -506,6 +506,7 @@ MonoBehaviour:
   basicBuilding: {fileID: 100000, guid: 6a1f183a187a9144cb6fe316418bc2ff, type: 2}
   groundTile: {fileID: 100000, guid: 1bbdbea5946d2ab40bcf92470d46d3ad, type: 2}
   checkpointPrefab: {fileID: 100000, guid: fba24f7edc51a5d4ea95c24a2ca974c7, type: 2}
+  player: {fileID: 0}
   tilesX: 20
   tilesY: 20
   tileScale: 100

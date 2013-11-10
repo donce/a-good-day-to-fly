@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	public float acceleration = 100;
 	public float slowingSpeed = 20;
 	
-	public Checkpoint currentCheckpoint;
+	public GameObject currentCheckpoint;
 	
 	GUIText GuiSpeed;
 	GameObject Arrow;
@@ -49,10 +49,22 @@ public class Player : MonoBehaviour {
 		
 		if (currentCheckpoint)
 		{
+			Arrow.renderer.enabled = true;
 			Arrow.transform.LookAt(currentCheckpoint.transform.position);
 			Arrow.transform.Rotate(new Vector3(90,90,90));
 		}
-
+		else 
+		{
+			Arrow.renderer.enabled = false;
+		}
+		
+		if(rigidbody.animation)
+		{
+			rigidbody.animation.Stop();
+			Debug.Log("stop");
+		}
+				
 		rigidbody.transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
 }
+

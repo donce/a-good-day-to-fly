@@ -26,7 +26,7 @@ public class Checkpoint : MonoBehaviour {
 	
 	public void Activate() {
 		gameObject.SetActive(true);
-		GameObject.Find("Player").gameObject.GetComponent<Player>().currentCheckpoint = this;
+		GameObject.Find("Player").gameObject.GetComponent<Player>().currentCheckpoint = this.gameObject;
 	}
 	
 }

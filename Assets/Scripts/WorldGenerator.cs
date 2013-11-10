@@ -7,6 +7,7 @@ public class WorldGenerator : MonoBehaviour {
 	public GameObject basicBuilding;
 	public GameObject groundTile;
 	public GameObject checkpointPrefab;
+	public GameObject player;
 	/* Generation parameters. */
 	public int tilesX = 20;
 	public int tilesY = 20;
@@ -33,7 +34,7 @@ public class WorldGenerator : MonoBehaviour {
 		
 		/* Place the player. */
 		// FIXME: Might be a better idea to Instantiate the player instead.
-		GameObject player = GameObject.Find("Player");
+		player = GameObject.Find("Player");
 		var ps = RandSpawnpoint();
 		player.transform.position = GetUnityPos(ps.x, ps.y,playerHeight, true);
 		
@@ -86,9 +87,10 @@ public class WorldGenerator : MonoBehaviour {
 	}
 	
 	/* Place an active game object in the specified tile. */
-	private void PlaceActive(Object gameObject, int x, int y, float height) {
+	private GameObject PlaceActive(Object gameObject, int x, int y, float height) {
 		Vector3 pos = GetUnityPos(x, y, height, true);
 		var instance = Instantiate(gameObject, pos, Quaternion.identity) as GameObject;
+		return instance;
 	}
 	
 	/* Transform tile coordinates to Unity coordinates. */
@@ -106,7 +108,9 @@ public class WorldGenerator : MonoBehaviour {
 	/* Spawn a single checkpoint in a random location. */
 	public void SpawnCheckpoint() {
 		var cs = RandSpawnpoint();
-		PlaceActive(checkpointPrefab, cs.x, cs.y, checkpointHeight);
+		var checkPoint = PlaceActive(checkpointPrefab, cs.x, cs.y, checkpointHeight);
+		if (player)
+			player.gameObject.GetComponent<Player>().currentCheckpoint = checkPoint;
 	}
 	
 }
