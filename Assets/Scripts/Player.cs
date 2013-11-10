@@ -13,7 +13,12 @@ public class Player : MonoBehaviour {
 	
 	public Checkpoint currentCheckpoint;
 	
+	GUIText GuiSpeed;
+	GameObject Arrow;
+	
 	void Start () {
+		GuiSpeed = GameObject.Find("GuiSpeed").GetComponent<GUIText>();
+		Arrow = GameObject.Find("arrowPointer");
 	}
 	
 	void Update () {
@@ -39,9 +44,15 @@ public class Player : MonoBehaviour {
 		speed += speedChange * Time.deltaTime;
 		speed = Mathf.Max(minSpeed, speed);
 		speed = Mathf.Min(maxSpeed, speed);
-		GameObject.Find("GuiSpeed").GetComponent<GUIText>().text = ((int)(speed * 3.6)).ToString() + " km/h";
+		
+		GuiSpeed.text = ((int)(speed * 3.6)).ToString() + " km/h";
+		
 		if (currentCheckpoint)
-			GameObject.Find("Arrow").transform.LookAt(currentCheckpoint.transform.position);
+		{
+			Arrow.transform.LookAt(currentCheckpoint.transform.position);
+			Arrow.transform.Rotate(new Vector3(90,90,90));
+		}
+
 		rigidbody.transform.Translate(Vector3.forward * speed * Time.deltaTime);
 	}
 }
