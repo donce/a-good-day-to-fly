@@ -132,7 +132,7 @@ MeshFilter:
     type: 2}
   m_PrefabInternal: {fileID: 861747521}
   m_GameObject: {fileID: 13327235}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 3cb25494f4be3bf41963477016def254, type: 3}
 --- !u!4 &13327239
 Transform:
   m_ObjectHideFlags: 0
@@ -543,6 +543,10 @@ Prefab:
       propertyPath: m_ReceiveShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3300000, guid: 5bdaad755ec2cea4b83a6d310f3bed86, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 3cb25494f4be3bf41963477016def254, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bdaad755ec2cea4b83a6d310f3bed86, type: 2}
   m_RootGameObject: {fileID: 13327235}
