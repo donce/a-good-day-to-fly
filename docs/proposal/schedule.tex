@@ -1,7 +1,6 @@
 \section{Preliminarus darbų tvarkaraštis}
 
 \newcommand{\schedule}[1]{
-    \tabulinesep = 3mm
     \taburowcolors{white .. gray!20}
     \begin{longtabu}{ X[c, m] X[c, m] }
         \textbf{Laikas} & \textbf{Veikla} \\
@@ -9,7 +8,6 @@
         \tabucline{-}
         #1
     \end{longtabu}
-    \tabureset
 }
 
 \newcommand{\scheduleEntry}[2]{
