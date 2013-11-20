@@ -1,11 +1,10 @@
 BOOK_NAME    := main
-SOURCE_FILES := $(wildcard *.tex *.sty *.bib)
 PASS_1_FLAGS := -output-directory=./
 PASS_2_FLAGS := $(PASS_1_FLAGS) -interaction=batchmode
 
 VERSION_STRING := $(shell git rev-parse --short HEAD)
 FINAL_CONTENT  := \newcommand{\versionString}{$(VERSION_STRING)}\input{$(BOOK_NAME)}
-DRAFT_CONTENT  := \newcommand{\placeholder}[1]{\textbf{\textsf{\textcolor{red}{(\#1)}}}}$(FINAL_CONTENT)
+DRAFT_CONTENT  := \newcommand{\compilingInDraftMode}{}$(FINAL_CONTENT)
 
 draft:
 	xelatex $(PASS_1_FLAGS) '$(DRAFT_CONTENT)'

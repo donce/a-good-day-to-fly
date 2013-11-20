@@ -55,6 +55,15 @@
 
 %% -----------------------------------------------------------------------------
 
+%% Žymi nebaigtas dokumento dalis.
+\newrobustcmd{\TODO}[1]{
+    \ifdef{\compilingInDraftMode}{
+        \textbf{\textsf{\textcolor{red}{\fbox{TODO} #1}}}
+    }{
+        \errmessage{TODO found in final mode}
+    }
+}
+
 %% Leidžia įterpti vaizdus.
 \RequirePackage{graphicx}
 \graphicspath{{./images/}}
@@ -62,27 +71,27 @@
 %% Žymės pavadinimas sutampa su perduodamu failo pavadinimu. Apibūdinimas naudojamas kaip antraštė.
 %% \insertPicture[dydis]{failo-pavadinimas-be-plėtinio}{trumpas vaizdo apibūdinimas}
 \newcommand{\insertPicture}[3][1.0]{%
-  \begin{figure}[p]
-      \centering
-      \includegraphics[
-      width = {
-        \ifdim #1\Gin@nat@width > \linewidth
-        \linewidth
-        \else
-        #1\Gin@nat@width
-        \fi
-      },
-      height = {
-        \ifdim #1\Gin@nat@height > \textheight
-        \textheight
-        \else
-        #1\Gin@nat@height
-        \fi
-      },
-      keepaspectratio]{#2}
-      \caption{#3}
-      \label{fig:#2}
-  \end{figure}
+    \begin{figure}[p]
+        \centering
+        \includegraphics[
+        width = {
+            \ifdim #1\Gin@nat@width > \linewidth
+            \linewidth
+            \else
+            #1\Gin@nat@width
+            \fi
+        },
+        height = {
+            \ifdim #1\Gin@nat@height > \textheight
+            \textheight
+            \else
+            #1\Gin@nat@height
+            \fi
+        },
+        keepaspectratio]{#2}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
 }
 
 %% Įterpia tekstinę nuorodą į vaizdą, įterptą su \insertPicture.
