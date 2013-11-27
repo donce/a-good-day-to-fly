@@ -357,12 +357,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f88973a3f456fc14f92e2defb0ebe82f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 100000, guid: 6a1f183a187a9144cb6fe316418bc2ff, type: 2}
+  buildings:
+  - {fileID: 100000, guid: 6a1f183a187a9144cb6fe316418bc2ff, type: 2}
+  - {fileID: 100000, guid: 3b97ff2d7a6fd1a499a6a98a8db55b11, type: 2}
   groundTile: {fileID: 100000, guid: 1bbdbea5946d2ab40bcf92470d46d3ad, type: 2}
-  tilesX: 20
-  tilesY: 20
+  tilesX: 40
+  tilesY: 40
   tileScale: 100
-  rejectRate: .5
+  rejectRate: .400000006
+  colorVariation: .600000024
 --- !u!114 &922026286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpointPrefab: {fileID: 100000, guid: fba24f7edc51a5d4ea95c24a2ca974c7, type: 2}
-  playerHeight: 100
-  checkpointHeight: 100
+  playerHeight: 500
+  checkpointHeight: 500
 --- !u!1001 &1122520811
 Prefab:
   m_ObjectHideFlags: 0
