@@ -2,10 +2,7 @@
 using System.Collections;
 
 public class Collectable : MonoBehaviour {
-	
-	void Start () {
-	}
-	
+
 	void Update () {
 		transform.Rotate(new Vector3(0, 1, 0));
 	}

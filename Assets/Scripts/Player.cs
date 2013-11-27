@@ -2,69 +2,50 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	private float speed = 10;
-	
-	public float minSpeed = 10;
-	public float maxSpeed = 200;
-	public float rotationSpeed = 100;
-	
-	public float acceleration = 100;
-	public float slowingSpeed = 20;
+	public float minThrust = 2000;
+	public float maxThrust = 20000;
+	public float torque = 10000;
+	public float aerodynamicity = 0.1f;
 	
 	public GameObject currentCheckpoint;
+
+	private GUIText guiSpeed;
+	private GameObject arrow;
 	
-	GUIText GuiSpeed;
-	GameObject Arrow;
-	
-	void Start () {
-		GuiSpeed = GameObject.Find("GuiSpeed").GetComponent<GUIText>();
-		Arrow = GameObject.Find("arrowPointer");
+	public void Start() {
+		arrow = GameObject.Find("Arrow");
 	}
 	
-	void Update () {
-		float rotation = rotationSpeed * Time.deltaTime;
-		if (Input.GetKey(KeyCode.A))
-			rigidbody.transform.Rotate(Vector3.up, -rotation);
-		if (Input.GetKey(KeyCode.D))
-			rigidbody.transform.Rotate(Vector3.up, rotation);
-		if (Input.GetKey(KeyCode.J))
-			rigidbody.transform.Rotate(Vector3.forward, rotation);
-		if (Input.GetKey(KeyCode.L))
-			rigidbody.transform.Rotate(Vector3.forward, -rotation);
-		if (Input.GetKey(KeyCode.W))
-			rigidbody.transform.Rotate(Vector3.right, rotation);
-		if (Input.GetKey(KeyCode.S))
-			rigidbody.transform.Rotate(Vector3.right, -rotation);
-		
-		float speedChange = -slowingSpeed;
-		if (Input.GetKey(KeyCode.I))
-			speedChange = acceleration;
-		if (Input.GetKey(KeyCode.K))
-			speedChange = -acceleration;
-		speed += speedChange * Time.deltaTime;
-		speed = Mathf.Max(minSpeed, speed);
-		speed = Mathf.Min(maxSpeed, speed);
-		
-		GuiSpeed.text = ((int)(speed * 3.6)).ToString() + " km/h";
-		
-		if (currentCheckpoint)
-		{
-			Arrow.renderer.enabled = true;
-			Arrow.transform.LookAt(currentCheckpoint.transform.position);
-			Arrow.transform.Rotate(new Vector3(90,90,90));
-		}
-		else 
-		{
-			Arrow.renderer.enabled = false;
-		}
-		
-		if(rigidbody.animation)
-		{
-			rigidbody.animation.Stop();
-			Debug.Log("stop");
-		}
-				
-		rigidbody.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+	public void FixedUpdate() {
+		/* Rotation. The ship must have a high angular drag or it will start spinning. */
+		rigidbody.AddTorque(transform.right * torque * Input.GetAxis("Pitch"), ForceMode.Force);
+		rigidbody.AddTorque(transform.up * torque * Input.GetAxis("Yaw"), ForceMode.Force);
+		rigidbody.AddTorque(transform.forward * torque * Input.GetAxis("Roll"), ForceMode.Force);
+
+		/* Aerodynamic force.
+		 * An atmosphere-capable spaceship would have to be aerodynamic, right?
+		 * I made the formula up so it's probably not realistic but it makes the handling easier..
+		 */
+		Vector3 aeroNormal = (-rigidbody.velocity.normalized + transform.forward).normalized;
+		Vector3 aeroForce = aeroNormal * rigidbody.velocity.magnitude * aerodynamicity;
+		rigidbody.AddForce(aeroForce, ForceMode.Force);
+
+		/* Thrust. */
+		float thrustInput = (Input.GetAxis("Thrust") + 1) / 2;
+		Vector3 force = transform.forward * Mathf.Lerp(minThrust, maxThrust, thrustInput);
+		rigidbody.AddForce(force, ForceMode.Force);
 	}
+
+	public void Update() {
+		// FIXME: This is probably not the right place to do this. "Arrow" should be responsible for this.
+		if(currentCheckpoint) {
+			arrow.SetActive(true);
+			arrow.transform.LookAt(currentCheckpoint.transform.position);
+		}
+		else {
+			arrow.SetActive(false);
+		}
+	}
+
 }
 

@@ -2,12 +2,12 @@
 using System.Collections;
 
 public class Checkpoint : MonoBehaviour {
+
+	private Camera target;
+	private WorldGenerator world;
 	
-	GameObject target;
-	WorldGenerator world;
-	
-	public void Awake() {
-		target = GameObject.Find("Camera");
+	public void Start() {
+		target = GameObject.Find("Camera").GetComponent<Camera>();
 		world = GameObject.Find("World").GetComponent<WorldGenerator>();
 		GameObject.Find("Player").GetComponent<Player>().currentCheckpoint = this.gameObject;
 	}

@@ -32,7 +32,7 @@ public class WorldGenerator : MonoBehaviour {
 		}
 	}
 	
-	public void Awake() {
+	public void Start() {
 		GenerateMap();
 		
 		/* Place the player. */
