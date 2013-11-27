@@ -4,6 +4,7 @@ Dokumentai direktorijose išdėstyti taip:
 
 * [proposal/](proposal) - projekto pasiūlymas.
 * [design/](design) - žaidimo projekto ir dizaino dokumentacija.
+* [prototype/](prototype) - prototipo dokumentacija.
 
 Kiekvienas dokumentas turi tokius failus:
 
