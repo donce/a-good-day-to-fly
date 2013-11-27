@@ -4,12 +4,12 @@ using System.Collections;
 public class Checkpoint : MonoBehaviour {
 
 	private Camera target;
-	private WorldGenerator world;
+	private Game game;
 	
 	public void Start() {
 		target = GameObject.Find("Camera").GetComponent<Camera>();
-		world = GameObject.Find("World").GetComponent<WorldGenerator>();
 		GameObject.Find("Player").GetComponent<Player>().currentCheckpoint = this.gameObject;
+		game = GameObject.Find("World").GetComponent<Game>();
 	}
 	
 	public void Update() {
@@ -19,8 +19,7 @@ public class Checkpoint : MonoBehaviour {
 	public void OnTriggerEnter(Collider other) {
 		Destroy(gameObject);
 		Debug.Log("Checkpoint!");
-		// FIXME: Use SpawnObject() instead.
-		world.SpawnCheckpoint(world.RandSpawnpoint());
+		game.SpawnCheckpoint();
 	}
-	
+
 }

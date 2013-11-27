@@ -6,10 +6,12 @@ public class Player : MonoBehaviour {
 	public float maxThrust = 20000;
 	public float torque = 10000;
 	public float aerodynamicity = 0.1f;
-	
+
+	// FIXME: Only a single checkpoint can be active at the same time.
 	public GameObject currentCheckpoint;
 
 	private GUIText guiSpeed;
+	// FIXME: "Arrow" should have a separate class/script.
 	private GameObject arrow;
 	
 	public void Start() {

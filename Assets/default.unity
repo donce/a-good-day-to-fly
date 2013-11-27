@@ -324,6 +324,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 922026284}
   - 114: {fileID: 922026285}
+  - 114: {fileID: 922026286}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -358,12 +359,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicBuilding: {fileID: 100000, guid: 6a1f183a187a9144cb6fe316418bc2ff, type: 2}
   groundTile: {fileID: 100000, guid: 1bbdbea5946d2ab40bcf92470d46d3ad, type: 2}
-  checkpointPrefab: {fileID: 100000, guid: fba24f7edc51a5d4ea95c24a2ca974c7, type: 2}
-  player: {fileID: 523456508}
   tilesX: 20
   tilesY: 20
   tileScale: 100
   rejectRate: .5
+--- !u!114 &922026286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 922026283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6613f9702c90e144a14953124c9641a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpointPrefab: {fileID: 100000, guid: fba24f7edc51a5d4ea95c24a2ca974c7, type: 2}
   playerHeight: 100
   checkpointHeight: 100
 --- !u!1001 &1122520811
