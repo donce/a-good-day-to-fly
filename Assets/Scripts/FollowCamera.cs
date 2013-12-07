@@ -10,6 +10,10 @@ public class FollowCamera : MonoBehaviour {
 
 	public void Start() {
 		player = GameObject.Find("Player").GetComponent<Player>();
+
+		Vector3 rotatedOffset = player.transform.rotation * offset;
+		transform.position = player.transform.position + rotatedOffset;
+		transform.rotation = player.transform.rotation;
 	}
 
 	public void FixedUpdate() {

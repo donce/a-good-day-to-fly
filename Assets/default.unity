@@ -12,12 +12,12 @@ SceneSettings:
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: .00999999978
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_Fog: 1
+  m_FogColor: {r: .800000012, g: .984313726, b: 1, a: 1}
+  m_FogMode: 1
+  m_FogDensity: 1
+  m_LinearFogStart: 2000
+  m_LinearFogEnd: 3000
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
@@ -158,11 +158,11 @@ Transform:
   m_PrefabInternal: {fileID: 1122520811}
   m_GameObject: {fileID: 151001031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 1766375482}
-  m_Father: {fileID: 523456512}
+  m_Father: {fileID: 1473156573}
 --- !u!1 &177904919
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +255,6 @@ Transform:
   m_LocalPosition: {x: 10, y: 10, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 151001032}
   - {fileID: 1130834991}
   m_Father: {fileID: 0}
 --- !u!114 &523456513
@@ -270,11 +269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61277300faea5f24e942851bbbe18589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minThrust: 2000
-  maxThrust: 20000
+  minThrust: 15000
+  maxThrust: 45000
   torque: 10000
   aerodynamicity: .100000001
-  currentCheckpoint: {fileID: 0}
 --- !u!1001 &819958602
 Prefab:
   m_ObjectHideFlags: 0
@@ -309,6 +307,10 @@ Prefab:
     - target: {fileID: 400000, guid: 7da92b67492f358408cb066ed9302d47, type: 2}
       propertyPath: m_LocalRotation.w
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 7da92b67492f358408cb066ed9302d47, type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7da92b67492f358408cb066ed9302d47, type: 2}
@@ -361,8 +363,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 6a1f183a187a9144cb6fe316418bc2ff, type: 2}
   - {fileID: 100000, guid: 3b97ff2d7a6fd1a499a6a98a8db55b11, type: 2}
   groundTile: {fileID: 100000, guid: 1bbdbea5946d2ab40bcf92470d46d3ad, type: 2}
-  tilesX: 40
-  tilesY: 40
+  tilesX: 60
+  tilesY: 60
   tileScale: 100
   rejectRate: .400000006
   colorVariation: .600000024
@@ -380,12 +382,13 @@ MonoBehaviour:
   checkpointPrefab: {fileID: 100000, guid: fba24f7edc51a5d4ea95c24a2ca974c7, type: 2}
   playerHeight: 500
   checkpointHeight: 500
+  currentCheckpoint: {fileID: 0}
 --- !u!1001 &1122520811
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 523456512}
+    m_TransformParent: {fileID: 1473156573}
     m_Modifications:
     - target: {fileID: 400000, guid: 46334d0f231709a44b7c91d3cd4c6db6, type: 2}
       propertyPath: m_LocalPosition.x
@@ -393,7 +396,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46334d0f231709a44b7c91d3cd4c6db6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46334d0f231709a44b7c91d3cd4c6db6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -583,6 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40766d405283134f8fab89fe07b1b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowOffset: {x: 0, y: 10, z: 40}
 --- !u!4 &1473156573
 Transform:
   m_ObjectHideFlags: 0
@@ -593,6 +597,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 151001032}
   - {fileID: 177904921}
   m_Father: {fileID: 0}
 --- !u!1001 &1524126842
@@ -699,7 +704,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 2000
+  far clip plane: 3000
   field of view: 60
   orthographic: 0
   orthographic size: 100
@@ -734,7 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 15, z: -40}
-  stepSize: .300000012
+  stepSize: .400000006
 --- !u!1 &1766375481
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +962,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 50
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2078,7 +2083,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 50
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:

@@ -8,8 +8,8 @@ public class Checkpoint : MonoBehaviour {
 	
 	public void Start() {
 		target = GameObject.Find("Camera").GetComponent<Camera>();
-		GameObject.Find("Player").GetComponent<Player>().currentCheckpoint = this.gameObject;
 		game = GameObject.Find("World").GetComponent<Game>();
+		game.currentCheckpoint = this.gameObject;
 	}
 	
 	public void Update() {

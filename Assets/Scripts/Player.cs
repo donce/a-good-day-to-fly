@@ -7,17 +7,10 @@ public class Player : MonoBehaviour {
 	public float torque = 10000;
 	public float aerodynamicity = 0.1f;
 
-	// FIXME: Only a single checkpoint can be active at the same time.
-	public GameObject currentCheckpoint;
-
 	private GUIText guiSpeed;
-	// FIXME: "Arrow" should have a separate class/script.
-	private GameObject arrow;
-	
-	public void Start() {
-		arrow = GameObject.Find("Arrow");
-	}
-	
+	private ParticleSystem engineL;
+	private ParticleSystem engineR;
+
 	public void FixedUpdate() {
 		/* Rotation. The ship must have a high angular drag or it will start spinning. */
 		rigidbody.AddTorque(transform.right * torque * Input.GetAxis("Pitch"), ForceMode.Force);
@@ -38,16 +31,4 @@ public class Player : MonoBehaviour {
 		rigidbody.AddForce(force, ForceMode.Force);
 	}
 
-	public void Update() {
-		// FIXME: This is probably not the right place to do this. "Arrow" should be responsible for this.
-		if(currentCheckpoint) {
-			arrow.SetActive(true);
-			arrow.transform.LookAt(currentCheckpoint.transform.position);
-		}
-		else {
-			arrow.SetActive(false);
-		}
-	}
-
 }
-

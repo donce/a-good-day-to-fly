@@ -6,6 +6,9 @@ public class Game : MonoBehaviour {
 	public GameObject checkpointPrefab;
 	public float playerHeight = 100;
 	public float checkpointHeight = 100;
+	
+	// FIXME: Only a single checkpoint can be active at the same time.
+	public GameObject currentCheckpoint;
 
 	private MapGenerator gen;
 
