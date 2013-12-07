@@ -379,10 +379,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6613f9702c90e144a14953124c9641a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHeight: 100
   checkpointPrefab: {fileID: 100000, guid: fba24f7edc51a5d4ea95c24a2ca974c7, type: 2}
-  playerHeight: 500
-  checkpointHeight: 500
-  currentCheckpoint: {fileID: 0}
+  checkpointHeightMin: 100
+  checkpointHeightMax: 900
+  checkpointCount: 3
+  timeLeft: 60
+  timeBonus: 15
 --- !u!1001 &1122520811
 Prefab:
   m_ObjectHideFlags: 0

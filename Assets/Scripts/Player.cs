@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Player : MonoBehaviour {
+
 	public float minThrust = 2000;
 	public float maxThrust = 20000;
 	public float torque = 10000;

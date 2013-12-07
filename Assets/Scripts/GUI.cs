@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GUI : MonoBehaviour {
 
@@ -20,12 +19,20 @@ public class GUI : MonoBehaviour {
 	}
 
 	public void Update() {
-		// TODO: LookAt nearest checkpoint.
-		if(game.currentCheckpoint) {
+		if(game.checkpoints.Count > 0) {
 			arrow.SetActive(true);
+
 			Vector3 rotatedOffset = cam.transform.rotation * arrowOffset;
 			arrow.transform.position = cam.transform.position + rotatedOffset;
-			arrow.transform.LookAt(game.currentCheckpoint.transform.position);
+
+			var nearest = game.checkpoints[0];
+			foreach(var check in game.checkpoints) {
+				if((check.transform.position - player.transform.position).magnitude <
+				   (nearest.transform.position - player.transform.position).magnitude) {
+					nearest = check;
+				}
+			}
+			arrow.transform.LookAt(nearest.transform.position);
 		}
 		else {
 			arrow.SetActive(false);

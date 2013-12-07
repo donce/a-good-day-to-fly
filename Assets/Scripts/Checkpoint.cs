@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Checkpoint : MonoBehaviour {
 
-	private Camera target;
+	private FollowCamera target;
 	private Game game;
 	
 	public void Start() {
-		target = GameObject.Find("Camera").GetComponent<Camera>();
+		target = GameObject.Find("Camera").GetComponent<FollowCamera>();
 		game = GameObject.Find("World").GetComponent<Game>();
-		game.currentCheckpoint = this.gameObject;
 	}
 	
 	public void Update() {
@@ -17,9 +15,8 @@ public class Checkpoint : MonoBehaviour {
 	}
 	
 	public void OnTriggerEnter(Collider other) {
+		game.PassCheckpoint(this);
 		Destroy(gameObject);
-		Debug.Log("Checkpoint!");
-		game.SpawnCheckpoint();
 	}
 
 }
