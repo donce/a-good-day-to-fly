@@ -8,18 +8,21 @@ public class Game : MonoBehaviour {
 	public float checkpointHeightMin = 100;
 	public float checkpointHeightMax = 900;
 	public int checkpointCount = 3;
-	public float timeLeft = 60;
-	public float timeBonus = 15;
+	public float initialTime = 60;
+	public float timeBonus = 5;
 
 	public readonly List<Checkpoint> checkpoints = new List<Checkpoint>();
+	public float timeLeft { get; private set; }
+	public float timeSurvived { get; private set; }
 
 	private MapGenerator mapGen;
 	private System.Random ranGen = new System.Random();
-	private float timeSurvived = 0;
 
 	public void Start() {
 		mapGen = GameObject.Find("World").GetComponent<MapGenerator>();
 		mapGen.GenerateMap();
+		timeLeft = initialTime;
+		timeSurvived = 0;
 		StartGame();
 	}
 
@@ -54,7 +57,7 @@ public class Game : MonoBehaviour {
 
 	private void SpawnCheckpoint() {
 		var spawnpoint = mapGen.RandSpawnpoint();
-		var height = (float) ranGen.NextDouble() * (checkpointHeightMax - checkpointHeightMin) + checkpointHeightMin;
+		var height = Mathf.Lerp(checkpointHeightMin, checkpointHeightMax, (float) ranGen.NextDouble());
 		var check = mapGen.SpawnObject(checkpointPrefab, spawnpoint, height).GetComponent<Checkpoint>();
 		checkpoints.Add(check);
 	}

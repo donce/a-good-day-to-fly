@@ -5,10 +5,10 @@ public class MapGenerator : MonoBehaviour {
 
 	/* Prefabs. */
 	public List<GameObject> buildings;
-	public GameObject groundTile;
+	public GameObject ground;
 	/* Generation parameters. */
-	public int tilesX = 40;
-	public int tilesY = 40;
+	public int tilesX = 60;
+	public int tilesY = 60;
 	public int tileScale = 100;
 	public float rejectRate = 0.4f;
 	public float colorVariation = 0.6f;
@@ -27,14 +27,13 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 	
-	/* Fill the map with buildings and ground tiles. */
+	/* Fill the map with buildings and instantiate the ground. */
 	public void GenerateMap() {
 		var tileOpen = GenerateOpen();
-		
+
 		for(int x = 0; x < tilesX; x++) {
 			for(int y = 0; y < tilesY; y++) {
 				var tile = new Tile(x, y);
-				PlaceTile(groundTile, tile);
 				if(tileOpen[x, y]) {
 					spawnpoints.Add(tile);
 				}
@@ -43,6 +42,10 @@ public class MapGenerator : MonoBehaviour {
 				}
 			}
 		}
+
+		var pos = GetUnityPos(new Tile(-tilesX, -tilesY));
+		var instance = Instantiate(ground, pos, Quaternion.identity) as GameObject;
+		instance.transform.localScale = new Vector3(tileScale * 3 * tilesX, tileScale, tileScale * 3 * tilesY);
 	}
 
 	/* Select a random spawnpoint from the field spawnpoints.

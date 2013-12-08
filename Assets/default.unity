@@ -240,7 +240,7 @@ Rigidbody:
   m_Mass: 100
   m_Drag: 1
   m_AngularDrag: 5
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
   buildings:
   - {fileID: 100000, guid: 6a1f183a187a9144cb6fe316418bc2ff, type: 2}
   - {fileID: 100000, guid: 3b97ff2d7a6fd1a499a6a98a8db55b11, type: 2}
-  groundTile: {fileID: 100000, guid: 1bbdbea5946d2ab40bcf92470d46d3ad, type: 2}
+  ground: {fileID: 100000, guid: 1bbdbea5946d2ab40bcf92470d46d3ad, type: 2}
   tilesX: 60
   tilesY: 60
   tileScale: 100
@@ -384,8 +384,8 @@ MonoBehaviour:
   checkpointHeightMin: 100
   checkpointHeightMax: 900
   checkpointCount: 3
-  timeLeft: 60
-  timeBonus: 15
+  initialTime: 60
+  timeBonus: 5
 --- !u!1001 &1122520811
 Prefab:
   m_ObjectHideFlags: 0
