@@ -19,12 +19,11 @@ public class Menu : MonoBehaviour {
 	}
 
 	void StartClicked() {
-		Debug.Log("game starts");
 		game.SetActive(true);
 		menu.SetActive(false);
 	}
 
 	void QuitClicked() {
-		Debug.Log("Quit clicked");
+		Application.Quit();
 	}
 }
