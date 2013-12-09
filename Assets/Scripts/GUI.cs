@@ -8,7 +8,7 @@ public class GUI : MonoBehaviour {
 	private FollowCamera cam;
 	private Game game;
 	private GameObject arrow;
-	private GUIText guiSpeed;
+	private GUIText guiSpeed, guiTime;
 
 	public void Start() {
 		player = GameObject.Find("Player").GetComponent<Player>();
@@ -16,6 +16,7 @@ public class GUI : MonoBehaviour {
 		game = GameObject.Find("World").GetComponent<Game>();
 		arrow = GameObject.Find("Arrow");
 		guiSpeed = GameObject.Find("GUISpeed").GetComponent<GUIText>();
+		guiTime = GameObject.Find("GUITime").GetComponent<GUIText>();
 	}
 
 	public void Update() {
@@ -40,5 +41,6 @@ public class GUI : MonoBehaviour {
 
 		/* The One True Unit of Speed. */
 		guiSpeed.text = ((int) player.rigidbody.velocity.magnitude).ToString() + " m/s";
+		guiTime.text = Mathf.Ceil(game.timeLeft).ToString();
 	}
 }
