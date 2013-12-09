@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GUI : MonoBehaviour {
+public class GameGUI : MonoBehaviour {
 
 	public Vector3 arrowOffset = new Vector3(0, 10, 40);
 
