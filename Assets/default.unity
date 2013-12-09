@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78959cad9e3abe5438e302f226f64673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgruondTexture: {fileID: 2800000, guid: 146294401c350e644b54ff72c5e5db1f, type: 3}
+  backgruondTexture: {fileID: 2800000, guid: 7372114267abcd64f8bedffdd3a0393a, type: 3}
 --- !u!1001 &1122520811
 Prefab:
   m_ObjectHideFlags: 0
