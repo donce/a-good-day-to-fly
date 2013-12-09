@@ -4,6 +4,8 @@ using System.Collections;
 public class Menu : MonoBehaviour {
 
 	public Texture2D backgruondTexture;
+	public GameObject game;
+	public GameObject menu;
 
 	void OnGUI() {
 		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgruondTexture);
@@ -18,6 +20,8 @@ public class Menu : MonoBehaviour {
 
 	void StartClicked() {
 		Debug.Log("game starts");
+		game.SetActive(true);
+		menu.SetActive(false);
 	}
 
 	void QuitClicked() {
