@@ -27,6 +27,10 @@ public class Game : MonoBehaviour {
 	}
 
 	public void FixedUpdate() {
+		if(Input.GetKeyDown(KeyCode.Escape)) {
+			Application.Quit();
+		}
+
 		/* Time.deltaTime is "smart". It returns the fixed frame interval
 		 * when called from FixedUpdate(). */
 		var diff = Time.deltaTime;
